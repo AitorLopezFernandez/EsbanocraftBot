@@ -38,9 +38,11 @@ public class EsbanocraftBot extends ListenerAdapter {
             // Esperamos a que el bot conecte correctamente
             jda.awaitReady();
             
+            // LIMPIEZA: Borra los comandos globales antiguos para que no se vean repetidos
+            jda.updateCommands().queue();
+            
             String serverdId = System.getenv("ESBANOCRAFT_GUILD_ID");
             // CAMBIO CRÍTICO: Registro directo en el servidor del cliente para que sea INSTANTÁNEO
-            // Reemplaza los números de abajo por el ID del servidor del cliente
             Guild guild = jda.getGuildById(serverdId);
 
             if (guild != null) {
